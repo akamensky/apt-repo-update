@@ -61,5 +61,7 @@ for hashme in `find main -type f`; do
 done
 
 # Sign!
-gpg --yes -u ${GPG_NAME} --sign -bao Release.gpg Release
+read -sp 'GPG Password: ' gpgpass
+gpg --batch --passphrase ${gpgpass} --yes -u ${GPG_NAME} --sign -bao Release.gpg Release
+echo "DONE"
 cd -
