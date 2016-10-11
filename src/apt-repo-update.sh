@@ -83,13 +83,15 @@ echo "MD5Sum:" >> dists/${REPONAME}/Release
 for hashme in `find dists/${REPONAME}/main -type f`; do
     md5=`openssl dgst -md5 ${hashme}|cut -d" " -f 2`
     size=`stat -c %s ${hashme}`
-    echo " ${md5} ${size} ${hashme}" >> dists/${REPONAME}/Release
+    fname=`echo "${hashme}" | cut -d"/" -f 3-`
+    echo " ${md5} ${size} ${fname}" >> dists/${REPONAME}/Release
 done
 echo "SHA1:" >> dists/${REPONAME}/Release
 for hashme in `find dists/${REPONAME}/main -type f`; do
     sha1=`openssl dgst -sha1 ${hashme}|cut -d" " -f 2`
     size=`stat -c %s ${hashme}`
-    echo " ${sha1} ${size} ${hashme}" >> dists/${REPONAME}/Release
+    fname=`echo "${hashme}" | cut -d"/" -f 3-`
+    echo " ${sha1} ${size} ${fname}" >> dists/${REPONAME}/Release
 done
 
 # Sign!
