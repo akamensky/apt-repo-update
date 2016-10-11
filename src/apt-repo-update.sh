@@ -75,7 +75,7 @@ Component: main
 Origin: <input>
 Label: <input>
 Architecture: i386 amd64
-Date: `date`
+Date: `date -u +"%a, %d %b %Y %H:%M:%S %Z"`
 ENDRELEASE
 
 # Generate hashes
