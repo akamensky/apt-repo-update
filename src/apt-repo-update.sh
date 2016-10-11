@@ -93,6 +93,13 @@ for hashme in `find dists/${REPONAME}/main -type f`; do
     fname=`echo "${hashme}" | cut -d"/" -f 3-`
     echo " ${sha1} ${size} ${fname}" >> dists/${REPONAME}/Release
 done
+echo "SHA256:" >> dists/${REPONAME}/Release
+for hashme in `find dists/${REPONAME}/main -type f`; do
+    sha1=`openssl dgst -sha256 ${hashme}|cut -d" " -f 2`
+    size=`stat -c %s ${hashme}`
+    fname=`echo "${hashme}" | cut -d"/" -f 3-`
+    echo " ${sha1} ${size} ${fname}" >> dists/${REPONAME}/Release
+done
 
 # Sign!
 read -sp 'GPG Password: ' gpgpass
