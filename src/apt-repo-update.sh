@@ -96,6 +96,6 @@ done
 
 # Sign!
 read -sp 'GPG Password: ' gpgpass
-gpg --batch --passphrase ${gpgpass} --yes -u ${GPG_NAME} --sign -bao dists/${REPONAME}/Release.gpg dists/${REPONAME}/Release
+gpg --batch --passphrase ${gpgpass} --yes -u ${GPG_NAME} --sign --digest-algo SHA256 -bao dists/${REPONAME}/Release.gpg dists/${REPONAME}/Release
 echo "DONE"
 cd -
